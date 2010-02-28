@@ -18,38 +18,10 @@ $(document).ready(function(){
           jQuery(".result").append(jQuery("<pre>").html(data.output));
         }
 
-        jQuery("#command_command").scrollTo();
+        jQuery("#command_command").scrollTo().val('');
       }
     });
   });
-
-/*  
-  $("#command").submit(function(){
-    $.post(
-      "/shell/", 
-      { command: $("#command_command").val(), authenticity_token: encodeURIComponent( AUTH_TOKEN ) },
-      function(data){ 
-        $("#command_command").attr('value', ''); 
-        var result = JSON.parse(data, function(key, value) {
-            var type;
-            if (value && typeof value === 'object') {
-                type = value.type;
-                if (typeof type === 'string' && typeof window[type] === 'function') {
-                    return new (window[type])(value);
-                }
-            }
-            return value;
-        });
-        $(".result").append(result.result);
-        $("#command_command").scrollTo();
-      }
-    );
-  });
-  */
-  $("#username").submit(function(){
-    console.log("it happened...")
-  });
-  
 });
 
 function checkJson(key, value) {
