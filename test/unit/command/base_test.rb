@@ -3,14 +3,6 @@ require 'test_helper'
 class Command::BaseTest < ActiveSupport::TestCase
   should("pass truthitest") { assert true }
 
-  should("register subclassese as commands") do
-    Class.new(Command::Base) do |klass|
-      def klass.name; 'SpecialCommand' end
-    end
-
-    assert Command.defined?('special_command'), "Should have defined the custom 'special_command' command. Space: #{Command.command_space.inspect}"
-  end
-
   context "#to_json" do
     should("include command's output") do
       stub( command = Command::Base.new).output.returns 'Hello world'

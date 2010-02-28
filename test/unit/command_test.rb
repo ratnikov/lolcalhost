@@ -1,23 +1,23 @@
 require 'test_helper'
 
 class CommandTest < ActiveSupport::TestCase
-  class TestCommand < Command::Base
+  class TestExternalCommand < Command::External
   end
   
   should("pass truthitest") { assert true }
 
   context "registering a command" do
     should("drop the namespace") do
-      assert Command.defined?('test_command'), "Expected 'test_command' to be in command space. Command space: #{Command.command_space.inspect}"
+      assert Command.defined?('test_external_command'), "Expected the test internal command to be in command space. Command space: #{Command.command_space.inspect}"
     end
   end
 
   context "Command.parse" do
     should("lookup the command from the registered commands cache") do
-      command = Command.parse('test_command')
+      command = Command.parse('test_external_command')
 
       assert_equal [], command.args, "Should report [] if no arguments is specified"
-      assert command.is_a?(TestCommand), "Expected to be a TestCommand instance, but wasn't. Class: #{command.class.inspect}"
+      assert command.is_a?(TestExternalCommand), "Expected to be a TestExternalCommand instance, but wasn't. Class: #{command.class.inspect}"
     end
 
     should("return Unknown instance for unknown command") do

@@ -1,4 +1,4 @@
-class Command::Unknown < Command::Base
+class Command::Unknown < Command::Internal
   attr_accessor :command
 
   def output

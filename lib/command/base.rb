@@ -10,10 +10,6 @@ class Command::Base
     end
   end
 
-  def self.inherited(subclass)
-    Command.register subclass
-  end
-
   def to_json
     { :output => output, :prompt => prompt }.to_json
   end
