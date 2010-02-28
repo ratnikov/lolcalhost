@@ -20,8 +20,12 @@ class CommandTest < ActiveSupport::TestCase
       assert command.is_a?(TestCommand), "Expected to be a TestCommand instance, but wasn't. Class: #{command.class.inspect}"
     end
 
-    should("return nil for unknown command") do
-      assert_nil Command.parse('unknowncommand')
+    should("return Unknown instance for unknown command") do
+      command = Command.parse('unknowncommand foo')
+      assert command.is_a?(Command::Unknown), "Should be an unknown command"
+
+      assert_equal 'unknowncommand', command.command, "Should set the name of the unknown command correctly"
+      assert_equal [ 'foo' ], command.args, "Should setup arguments correctly"
     end
   end
 end

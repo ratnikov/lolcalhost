@@ -1,10 +1,13 @@
 class Command::Base
-  attr_reader :args
-
+  attr_accessor :args
   attr_reader :output, :prompt
 
-  def initialize(args = [])
-    @args = args
+  def initialize options = nil
+    unless options.nil?
+      options.each_pair do |attribute, value|
+        send("#{attribute}=", value)
+      end
+    end
   end
 
   def self.inherited(subclass)

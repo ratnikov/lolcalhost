@@ -18,9 +18,9 @@ module Command
       (name, *args) = command_line.split(/ +/)
 
       if command_space.include?(name)
-        command_space[name].new args
+        command_space[name].new :args => args
       else
-        nil
+        ::Command::Unknown.new :command => name, :args => args
       end
     end
 

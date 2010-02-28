@@ -15,10 +15,12 @@ class CommandsControllerTest < ActionController::TestCase
       assert_equal command.to_json, @response.body
     end
 
-    should("404 for an unknown command") do
+    should("use Command::Unknown for an unknown command") do
       post :create, { :command => 'non-existing command' }
 
-      assert_response 404
+      assert_not_nil (command = assigns(:command)), "Should assign to @command"
+
+      assert command.kind_of?(Command::Unknown), "Should render an Unknown command"
     end
   end
 end
