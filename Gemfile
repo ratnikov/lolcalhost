@@ -10,6 +10,7 @@ group :development, :test do
   gem 'rr', '~> 0.10.9'
 end
 
-group :production do
+group :heroku do
   gem 'pg'
+  gem 'thin'
 end
