@@ -15,7 +15,7 @@ module Command
     end
 
     def register(command_klass)
-      name = command_klass.name.demodulize.underscore
+      name = command_klass.command_name
 
       unless @commands.has_key?(name)
         @commands[name] = command_klass

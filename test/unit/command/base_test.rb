@@ -3,6 +3,10 @@ require 'test_helper'
 class Command::BaseTest < ActiveSupport::TestCase
   should("pass truthitest") { assert true }
 
+  should("initialize args to [] by default") do
+    assert_equal [], Command::Base.new.args
+  end
+
   context "#to_json" do
     should("include command's output") do
       stub( command = Command::Base.new).output.returns 'Hello world'
