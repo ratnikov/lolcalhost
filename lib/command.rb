@@ -1,10 +1,10 @@
 module Command
   class CommandExists < StandardError
     def initialize(name)
-      @@name = name
+      @name = name
     end
 
-    def to_s; "Command with name #{name} is already defined" end
+    def to_s; "Command with name #{@name} is already defined" end
   end
   
   class << self
